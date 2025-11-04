@@ -35,7 +35,7 @@ namespace Counter.Test
             Assert.Throws<ArgumentException>(()=>counter.AddTime(timetoadd));
         }
         [Fact]
-        public void PassTime_1hour_ShouldDecreaseRemainingTimeBy1Hour()
+        public void PassTime_Was3hoursPassed1hour_ShouldDecreaseRemainingTimeBy1Hour()
         {
             //Arrange
             TimeSpan initialtime = TimeSpan.FromHours(3);
@@ -60,6 +60,23 @@ namespace Counter.Test
             //Act
             //Assert
             Assert.Throws<ArgumentException>(() => counter.PassTime(timepassed));
+        }
+        [Fact]
+        public void PassTime_Was1hourPassed2hour_ShouldNotGoBelowZero()
+        {
+            //Arrange
+            TimeSpan initialtime = TimeSpan.FromHours(1);
+            TimeSpan timepassed = TimeSpan.FromHours(2);
+            TimeSpan expected = TimeSpan.Zero;
+            ParkingCounter counter = new ParkingCounter();
+            //Act
+            counter.AddTime(initialtime);
+            //Assert
+            Assert.Equal(initialtime, counter.RemainingTime);
+            //Act
+            counter.PassTime(timepassed);
+            //Assert
+            Assert.Equal(expected, counter.RemainingTime);
         }
     }
 }

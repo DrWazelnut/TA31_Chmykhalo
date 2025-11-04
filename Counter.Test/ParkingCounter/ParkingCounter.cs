@@ -22,6 +22,10 @@
                 throw new ArgumentException("Negative values are prohibited");
             }
             _remainingTime -= timepassed;
+            if (_remainingTime < TimeSpan.Zero)
+            {
+                _remainingTime = TimeSpan.Zero;
+            }
         }
     }
 }
