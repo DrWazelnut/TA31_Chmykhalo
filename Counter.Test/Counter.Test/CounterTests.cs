@@ -12,5 +12,16 @@ namespace Counter.Test
             // Assert
             Assert.Equal(expected, counter.Expired);
         }
+        [Fact]
+        public void AddTime_1hour_ShouldIncreaseRemainingTimeBy1Hour()
+        {
+            // Arrange
+            TimeSpan expected = TimeSpan.FromHours(1);
+            ParkingCounter counter = new ParkingCounter();
+            // Act
+            counter.AddTime(TimeSpan.FromHours(1));
+            // Assert
+            Assert.Equal(expected, counter.RemainingTime);
+        }
     }
 }
