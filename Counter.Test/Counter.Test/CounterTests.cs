@@ -13,6 +13,37 @@ namespace Counter.Test
             Assert.Equal(expected, counter.Expired);
         }
         [Fact]
+        public void Expired_HasRemainingTime_ShouldReturnFalse()
+        {
+            // Arrange
+            bool expected = false;
+            TimeSpan timetoadd = TimeSpan.FromHours(1);
+            ParkingCounter counter = new ParkingCounter();
+            // Act
+            counter.AddTime(timetoadd);
+            // Assert
+            Assert.Equal(timetoadd, counter.RemainingTime);
+            Assert.Equal(expected, counter.Expired);
+        }
+        [Fact]
+        public void Expired_HasNoTime_ShouldReturnTrue()
+        {
+            // Arrange
+            bool expected = true;
+            TimeSpan timetoadd = TimeSpan.FromHours(1);
+            TimeSpan timepassed = TimeSpan.FromHours(1);
+            ParkingCounter counter = new ParkingCounter();
+            // Act
+            counter.AddTime(timetoadd);
+            // Assert
+            Assert.Equal(timetoadd, counter.RemainingTime);
+            //Act
+            counter.PassTime(timepassed);
+            //Assert
+            Assert.Equal(TimeSpan.Zero, counter.RemainingTime);
+            Assert.Equal(expected, counter.Expired);
+        }
+        [Fact]
         public void AddTime_1hour_ShouldIncreaseRemainingTimeBy1Hour()
         {
             // Arrange
