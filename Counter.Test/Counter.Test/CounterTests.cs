@@ -50,7 +50,16 @@ namespace Counter.Test
             counter.PassTime(timepassed);
             //Assert
             Assert.Equal(expected, counter.RemainingTime);
-
+        }
+        [Fact]
+        public void PassTime_NegativeTime_ShouldThrowArgumentExeption()
+        {
+            //Arrange
+            TimeSpan timepassed = TimeSpan.FromHours(-1);
+            ParkingCounter counter = new ParkingCounter();
+            //Act
+            //Assert
+            Assert.Throws<ArgumentException>(() => counter.PassTime(timepassed));
         }
     }
 }

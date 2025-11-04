@@ -17,6 +17,10 @@
 
         public void PassTime(TimeSpan timepassed)
         {
+            if (timepassed < TimeSpan.Zero)
+            {
+                throw new ArgumentException("Negative values are prohibited");
+            }
             _remainingTime -= timepassed;
         }
     }
