@@ -8,6 +8,10 @@
 
         public void AddTime(TimeSpan timeSpan)
         {
+            if (timeSpan <= TimeSpan.Zero) 
+            {
+                throw new ArgumentException("Negative values are prohibited");
+            }
             _remainingTime += timeSpan;
         }
     }

@@ -23,5 +23,14 @@ namespace Counter.Test
             // Assert
             Assert.Equal(expected, counter.RemainingTime);
         }
+        [Fact]
+        public void AddTime_NegativeTime_ShouldThrowArgumentExeption()
+        {
+            // Arrange
+            ParkingCounter counter = new ParkingCounter();
+            // Act
+            // Assert
+            Assert.Throws<ArgumentException>(()=>counter.AddTime(TimeSpan.FromHours(-1)));
+        }
     }
 }
