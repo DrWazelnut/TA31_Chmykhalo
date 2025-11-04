@@ -1,6 +1,6 @@
 ﻿namespace Counter.Test
 {
-    internal class ParkingCounter
+    public class ParkingCounter
     {
         private TimeSpan _remainingTime;
         public TimeSpan RemainingTime=> _remainingTime;
